@@ -2,19 +2,11 @@
 #include <SFML\Graphics.hpp>
 #include "Color.h"
 #include "EnumTypes.h"
+#include "Pixel.h"
+#include "DMath.h"
 
 #define WIDTH 400
 #define HEIGHT 300
-
-struct Pixel
-{
-    sf::Vector2f velocity;
-    PixelType type;
-
-    Pixel() : velocity(0, 0), type(Null) { }
-	Pixel(sf::Vector2i position, sf::Vector2f velocity, PixelType type) : 
-        velocity(velocity), type(type){ }
-};
 
 void PopWindowEvents(sf::Window& window)
 {
@@ -28,17 +20,6 @@ void PopWindowEvents(sf::Window& window)
             window.close();
             break;
         }
-    }
-}
-
-Color GetColorFromType(PixelType& type)
-{
-    switch (type)
-    {
-    case Sand:
-        return Color(255, 255, 100, 255);
-    default:
-        return Color(0, 0, 0, 0);
     }
 }
 
@@ -67,7 +48,7 @@ void UpdateViewTexture(sf::Uint8* texPixels, int& texSize, Pixel* pixels)
     }
 }
 
-void ResolveCollisionBetween(const sf::Vector2i& p1, const sf::Vector2i& p2, Pixel* pixels, sf::Vector2i& lastAvailablePosition)
+void ResolveCollisionBetween(const sf::Vector2i& p1, const sf::Vector2i& p2, Pixel* pixels, sf::Vector2i& outputPosition)
 {
     int dx = p2.x - p1.x;
     int dy = p2.y - p1.y;
@@ -86,7 +67,7 @@ void ResolveCollisionBetween(const sf::Vector2i& p1, const sf::Vector2i& p2, Pix
 
         if (pixel->type != Null)
         {
-            lastAvailablePosition = lastAvailablePos;
+            outputPosition = lastAvailablePos;
             return;
         }
 
@@ -114,33 +95,6 @@ bool IsSolidPixelAt(int x, int y, Pixel* pixels)
     if (pixelAtPos->type != Null)
         return true;
     return false;
-}
-
-int Clamp(const int& value, const int& min, const int& max)
-{
-    if (value < min)
-        return min;
-    if (value > max - 1)
-        return max - 1;
-    return value;
-}
-
-void UpdatePixels(Pixel* pixels, const float& delta)
-{
-    bool flipX = false;
-
-    for (int y = HEIGHT - 1; y >= 0; y--)
-    {
-        for (int x = 0; x < WIDTH; x++)
-        {
-            int trueX = flipX ? WIDTH - 1 - x : x;
-
-            Pixel* pixel = &pixels[y * WIDTH + trueX];
-
-            
-        }
-        flipX = !flipX;
-    }
 }
 
 Pixel* GetPixelAtPosition(Pixel* pixels, sf::Vector2i& position)

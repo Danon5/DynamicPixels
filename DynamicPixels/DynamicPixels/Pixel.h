@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML\Graphics.hpp>
 #include "EnumTypes.h"
+#include "Color.h"
 
 struct Pixel
 {
