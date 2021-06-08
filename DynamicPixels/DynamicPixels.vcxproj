@@ -145,7 +145,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DynamicPixels\Color.cpp" />
     <ClCompile Include="DynamicPixels\Application.cpp" />
+    <ClCompile Include="DynamicPixels\Pixel.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DynamicPixels\Color.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

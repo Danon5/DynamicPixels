@@ -1,22 +1,10 @@
 #include <iostream>
 #include <SFML\Graphics.hpp>
+#include "Color.h"
+#include "EnumTypes.h"
 
 #define WIDTH 400
 #define HEIGHT 300
-
-struct Color
-{
-    sf::Uint8 r, g, b, a;
-
-    Color() : r(0), g(0), b(0), a(0) { }
-	Color(sf::Uint8 r, sf::Uint8 g, sf::Uint8 b, sf::Uint8 a) : r(r), g(g), b(b), a(a) { }
-};
-
-enum PixelType : unsigned char
-{
-	Null,
-	Sand,
-};
 
 struct Pixel
 {
