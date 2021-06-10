@@ -1,28 +1,28 @@
 #include "WindowManager.h"
 
-WindowManager::WindowManager()
+RenderWindowManager::RenderWindowManager()
 {
 	InitializeWindow(800, 600);
 }
 
-WindowManager::~WindowManager()
+RenderWindowManager::~RenderWindowManager()
 {
 	delete _renderWindow;
 }
 
-void WindowManager::InitializeWindow(int width, int height)
+void RenderWindowManager::InitializeWindow(int width, int height)
 {
 	_renderWindow = new sf::RenderWindow(sf::VideoMode(width, height), "DynamicPixels");
 	_renderWindow->setFramerateLimit(60);
 }
 
-void WindowManager::SetResolution(int width, int height)
+void RenderWindowManager::SetResolution(int width, int height)
 {
 	sf::Vector2u newSize(width, height);
 	_renderWindow->setSize(newSize);
 }
 
-void WindowManager::PopWindowEvents()
+void RenderWindowManager::PopWindowEvents()
 {
 	sf::Event evnt;
 
@@ -36,7 +36,17 @@ void WindowManager::PopWindowEvents()
 	}
 }
 
-sf::RenderWindow* WindowManager::GetRenderWindow() const
+void RenderWindowManager::ClearFrame()
+{
+	_renderWindow->clear();
+}
+
+void RenderWindowManager::DrawFrame()
+{
+	_renderWindow->display();
+}
+
+sf::RenderWindow* RenderWindowManager::GetRenderWindow() const
 {
 	return _renderWindow;
 }

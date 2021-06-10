@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -92,7 +92,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SFML\include;$(SolutionDir)DynamicPixels\CodeBase\Rendering;$(SolutionDir)DynamicPixels\CodeBase\Backend</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\SFML\include;$(SolutionDir)DynamicPixels\CodeBase\Rendering;$(SolutionDir)DynamicPixels\CodeBase\Backend;$(SolutionDir)DynamicPixels\CodeBase\DataTypes</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>
       </AdditionalUsingDirectories>
     </ClCompile>
@@ -155,13 +155,19 @@
     <None Include="DynamicPixels.aps" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CodeBase\DataTypes\Chunk.h" />
     <ClInclude Include="CodeBase\Backend\Engine.h" />
     <ClInclude Include="CodeBase\Rendering\WindowManager.h" />
+    <ClInclude Include="CodeBase\DataTypes\Pixel.h" />
+    <ClInclude Include="CodeBase\Rendering\SpriteManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CodeBase\DataTypes\Chunk.cpp" />
     <ClCompile Include="CodeBase\Backend\Engine.cpp" />
     <ClCompile Include="CodeBase\Backend\Application.cpp" />
     <ClCompile Include="CodeBase\Rendering\WindowManager.cpp" />
+    <ClCompile Include="CodeBase\DataTypes\Pixel.cpp" />
+    <ClCompile Include="CodeBase\Rendering\SpriteManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

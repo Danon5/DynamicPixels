@@ -2,32 +2,39 @@
 
 Engine::Engine()
 {
-	_windowManager = new WindowManager();
+	_renderWindowManager = new RenderWindowManager();
+	_spriteManager = new SpriteManager();
 	Run();
 }
 
 Engine::~Engine()
 {
-	delete _windowManager;
+	delete _renderWindowManager;
 }
 
 void Engine::Run()
 {
-	sf::RenderWindow* window = _windowManager->GetRenderWindow();
+	sf::RenderWindow* window = _renderWindowManager->GetRenderWindow();
 
 	while (window->isOpen())
 	{
-		_windowManager->PopWindowEvents();
+		_renderWindowManager->PopWindowEvents();
 
-		window->clear();
+		_renderWindowManager->ClearFrame();
 
+		_spriteManager->DrawChunkSprites(window);
+		_spriteManager->DrawEntitySprites(window);
 
-
-		window->display();
+		_renderWindowManager->DrawFrame();
 	}
 }
 
-WindowManager* Engine::GetWindowManager() const
+RenderWindowManager* Engine::GetWindowManager() const
 {
-	return _windowManager;
+	return _renderWindowManager;
+}
+
+SpriteManager* Engine::GetSpriteManager() const
+{
+	return _spriteManager;
 }

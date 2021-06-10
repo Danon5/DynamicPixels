@@ -1,14 +1,17 @@
 #pragma once
 #include "WindowManager.h"
+#include "SpriteManager.h"
 
 class Engine
 {
 private:
-	WindowManager* _windowManager;
+	RenderWindowManager* _renderWindowManager;
+	SpriteManager* _spriteManager;
 public:
 	Engine();
 	~Engine();
-	WindowManager* GetWindowManager() const;
+	RenderWindowManager* GetWindowManager() const;
+	SpriteManager* GetSpriteManager() const;
 private:
 	void Run();
 };
